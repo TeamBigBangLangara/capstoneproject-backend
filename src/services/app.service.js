@@ -74,7 +74,7 @@ async function saveOneUserInDb(requestBody) {
 
   return response;
 }
-
+//this is not working ----
 async function updateOneUserInDb(reqParam, requestBody) {
   const filterQuery = { _id: reqParam };
   const toUpdateUser = dbService.getOneFromDb(User, filterQuery);
@@ -146,7 +146,7 @@ async function saveOneBookmarkInDb(requestBody) {
 
   return response;
 }
-
+//this is not working ----
 async function updateOneBookmarkInDb(reqParam, requestBody) {
   const filterQuery = { _id: reqParam };
   const toUpdateBookmark = dbService.getOneFromDb(Bookmarks, filterQuery);
@@ -182,7 +182,7 @@ async function saveOneUserProfileInDb(requestBody) {
 
   return response;
 }
-
+//this is not working ----
 async function updateOneUserProfileInDb(reqParam, requestBody) {
   const filterQuery = { _id: reqParam };
   const toUpdateUserProfile = dbService.getOneFromDb(UserProfile, filterQuery);
