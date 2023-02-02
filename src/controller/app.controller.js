@@ -20,16 +20,16 @@ async function saveOneUser(req, res, next) {
 async function updateOneUserById(req, res, next) {
   res
     .status(200)
-    .send(await appService.updateOneUserById(req.params.id, req.body));
+    .send(await appService.updateOneUserInDb(req.params.id, req.body));
 }
 
 async function deleteOneUserById(req, res, next) {
   res
     .status(200)
     .send(
-      await appService.deleteOneUserById(req.params.id)
+      await appService.deleteOneUserInDb(req.params.id)
     );
-}
+} 
 
 ////////// RATING //////////
 
@@ -48,14 +48,14 @@ async function saveOneRating(req, res, next) {
 async function updateOneRatingById(req, res, next) {
   res
     .status(200)
-    .send(await appService.updateOneRatingById(req.params.id, req.body));
+    .send(await appService.updateOneRatingInDb(req.params.id, req.body));
 }
 
 async function deleteOneRatingById(req, res, next) {
   res
     .status(200)
     .send(
-      await appService.deleteOneRatingById(req.params.id)
+      await appService.deleteOneRatingInDb(req.params.id)
     );
 }
 
@@ -76,14 +76,14 @@ async function saveOneBookmark(req, res, next) {
 async function updateOneBookmarkById(req, res, next) {
   res
     .status(200)
-    .send(await appService.updateOneBookmarkById(req.params.id, req.body));
+    .send(await appService.updateOneBookmarkInDb(req.params.id, req.body));
 }
 
 async function deleteOneBookmarkById(req, res, next) {
   res
     .status(200)
     .send(
-      await appService.deleteOneBookmarkById(req.params.id)
+      await appService.deleteOneBookmarkInDb(req.params.id)
     );
 }
 

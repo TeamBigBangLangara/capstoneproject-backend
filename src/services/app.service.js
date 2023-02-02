@@ -44,14 +44,11 @@ function buildUserProfileModelToSave(informationObject) {
   const buildUserProfileModelToSave = new UserProfile({
     address: informationObject.address,
     profile_photo: informationObject.profile_photo,
+    geoLocation_Latitude: informationObject.geoLocation_Latitude,
+    geoLocation_Longitude: informationObject.geoLocation_Longitude,
     business_type: informationObject.business_type,
     notification_setting: informationObject.notification_setting,
     user_id: informationObject.user_id,
-    event_customization: {
-        radius: informationObject.radius,
-        crowd_count : informationObject.crowd_count,
-        my_category :[informationObject.my_category],
-    }
   });
 
   return buildUserProfileModelToSave;
@@ -114,7 +111,7 @@ async function saveOneRatingInDb(requestBody) {
 
   return response;
 }
-
+//this is not working ----
 async function updateOneRatingInDb(reqParam, requestBody) {
   const filterQuery = { _id: reqParam };
   const toUpdateRating = dbService.getOneFromDb(Rating, filterQuery);
@@ -190,12 +187,13 @@ async function updateOneUserProfileInDb(reqParam, requestBody) {
   const filterQuery = { _id: reqParam };
   const toUpdateUserProfile = dbService.getOneFromDb(UserProfile, filterQuery);
   toUpdateUserProfile.address =  requestBody.address;
+  toUpdateUserProfile.geoLocation_Latitude = requestBody.geoLocation_Latitude;
+  toUpdateUserProfile.geoLocation_Longitude = requestBody.geoLocation_Longitude;
   toUpdateUserProfile.profile_photo = requestBody.profile_photo;
   toUpdateUserProfile.business_type = requestBody.business_type;
   toUpdateUserProfile.notification_setting = requestBody.notification_setting;
   toUpdateUserProfile.user_id = requestBody.user_id;
     
-
   const response = dbService.saveOneInDb(toUpdateUserProfile);
   return response;
 }
