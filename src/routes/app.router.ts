@@ -13,4 +13,16 @@ router.post('/user', appController.saveOneUser);
 // router.patch('/user/:id', appController.updateOneUserById);
 router.delete('/user/:id', appController.deleteOneUserById);
 
+////////// RATING ROUTES //////////
+
+router.get('/rating/all', appController.getAllRatings);
+router.get('/rating/:id', appController.getOneRatingById);
+// CHECK POST METHOD
+router.post('/rating', appController.saveOneRating);
+// router.patch('/rating/:id', appController.updateOneRatingById);
+router.delete('/rating/:id', appController.deleteOneRatingById);
+
 export default router;
+
+
+
