@@ -58,3 +58,25 @@ export async function deleteOneRatingById(req: Request, res: Response, next: Nex
       await appService.deleteOneRatingInDb(req.params.id)
     );
 }
+
+////////// BOOKMARK //////////
+
+export async function getAllBookmarks(req: Request, res: Response, next: NextFunction) {
+  res.status(200).send(await appService.getAllBookmarksFromDb());
+}
+
+export async function getOneBookmarkById(req: Request, res: Response, next: NextFunction) {
+  res.status(200).send(await appService.getOneBookmarkFromDb(req.params.id));
+}
+
+export async function saveOneBookmark(req: Request, res: Response, next: NextFunction) {
+  res.status(200).send(await appService.saveOneBookmarkInDb(req.body));
+}
+
+export async function deleteOneBookmarkById(req: Request, res: Response, next: NextFunction) {
+  res
+    .status(200)
+    .send(
+      await appService.deleteOneBookmarkInDb(req.params.id)
+    );
+}

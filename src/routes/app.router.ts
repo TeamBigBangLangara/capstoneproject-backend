@@ -22,6 +22,13 @@ router.post('/rating', appController.saveOneRating);
 // router.patch('/rating/:id', appController.updateOneRatingById);
 router.delete('/rating/:id', appController.deleteOneRatingById);
 
+////////// BOOKMARK ROUTES //////////
+
+router.get('/bookmark/all', appController.getAllBookmarks);
+router.get('/bookmark/:id', appController.getOneBookmarkById);
+router.post('/bookmark', appController.saveOneBookmark);
+router.delete('/bookmark/:id', appController.deleteOneBookmarkById);
+
 export default router;
 
 
