@@ -9,6 +9,7 @@ interface eventCustomization {
 export interface IUserProfile extends Document {
     address: String;
     geoLocation_Latitude: Number;
+    geoLocation_Longitude: String;
     profile_photo: String;
     business_name: String;
     notification_setting: Boolean;

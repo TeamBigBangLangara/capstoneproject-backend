@@ -9,8 +9,8 @@ import UserProfile, { IUserProfile } from "../models/UserProfile";
 
 //=================================== MODEL BUILDING FUNCTIONS
 
-function buildUserModelToSave(informationObject: any) {
-  const buildUserModelToSave = new (User as any)({
+function buildUserModelToSave(informationObject: IUser) {
+  const buildUserModelToSave = new User({
     userName: informationObject.userName,
     email: informationObject.email,
     UID: informationObject.UID
@@ -19,8 +19,8 @@ function buildUserModelToSave(informationObject: any) {
   return buildUserModelToSave;
 }
 
-function buildRatingModelToSave(informationObject: any) {
-  const buildRatingModelToSave = new (Rating as any)({
+function buildRatingModelToSave(informationObject: IRating) {
+  const buildRatingModelToSave = new Rating({
     user_id: informationObject.user_id,
 	  category: informationObject.category,
     rate : informationObject.rate,
@@ -30,8 +30,8 @@ function buildRatingModelToSave(informationObject: any) {
   return buildRatingModelToSave;
 }
 
-function buildBookmarkModelToSave(informationObject: any) {
-  const buildBookmarkModelToSave = new (Bookmarks as any)({
+function buildBookmarkModelToSave(informationObject: IBookmarks) {
+  const buildBookmarkModelToSave = new Bookmarks({
     user_id: informationObject.user_id,
     event_id : informationObject.event_id,
   });
@@ -39,20 +39,20 @@ function buildBookmarkModelToSave(informationObject: any) {
   return buildBookmarkModelToSave;
 }
 
-function buildUserProfileModelToSave(informationObject: any) {
-  const buildUserProfileModelToSave = new (UserProfile as any)({
+function buildUserProfileModelToSave(informationObject: IUserProfile) {
+  const buildUserProfileModelToSave = new UserProfile({
     address: informationObject.address,
     profile_photo: informationObject.profile_photo,
     geoLocation_Latitude: informationObject.geoLocation_Latitude,
     geoLocation_Longitude: informationObject.geoLocation_Longitude,
-    business_type: informationObject.business_type,
+    business_type: informationObject.business_name,
     notification_setting: informationObject.notification_setting,
     user_id: informationObject.user_id,
-    // event_customization: {
-    //   radius: informationObject.radius,
-    //   crowd_count: informationObject.crowd_count,
-    //   my_category: informationObject.my_category
-    // }
+    event_customization: {
+      radius: informationObject.event_customization.radius,
+      crowd_count: informationObject.event_customization.crowd_count,
+      my_category: informationObject.event_customization.my_category
+    }
   });
 
   return buildUserProfileModelToSave;
@@ -67,14 +67,14 @@ async function getAllUsersFromDb(): Promise<IUser[]> {
   return response;
 }
 
-async function getOneUserFromDb(reqParam: any) {
+async function getOneUserFromDb(reqParam: IUser) {
   const filterQuery = { _id: reqParam };
   const response = await dbService.getOneFromDb(User, filterQuery);
   
   return response;
   }
 
-  async function saveOneUserInDb(requestBody: any) {
+  async function saveOneUserInDb(requestBody: IUser) {
     const response = dbService.saveOneInDb(buildUserModelToSave(requestBody));
   
     return response;
@@ -91,7 +91,7 @@ async function getOneUserFromDb(reqParam: any) {
     return response;
   }
 
-  async function deleteOneUserInDb(reqParam: any) {
+  async function deleteOneUserInDb(reqParam: IUser) {
     const filterQuery = { _id: reqParam };
     const response = dbService.deleteOneFromDb(User, filterQuery);
   
@@ -104,14 +104,14 @@ async function getAllRatingsFromDb(): Promise<IRating[]>  {
   return response;
 }
 
-async function getOneRatingFromDb(reqParam: any) {
+async function getOneRatingFromDb(reqParam: IRating) {
   const filterQuery = { _id: reqParam };
   const response = dbService.getOneFromDb(Rating, filterQuery);
 
   return response;
 }
 
-async function saveOneRatingInDb(requestBody: any) {
+async function saveOneRatingInDb(requestBody: IRating) {
   const response = dbService.saveOneInDb(buildRatingModelToSave(requestBody));
 
   return response;
@@ -126,7 +126,7 @@ async function updateOneRatingInDb(reqParam: string, requestBody: { rate: number
   return response;
 }
 
-async function deleteOneRatingInDb(reqParam: any) {
+async function deleteOneRatingInDb(reqParam: IRating) {
   const filterQuery = { _id: reqParam };
   const response = dbService.deleteOneFromDb(Rating, filterQuery);
 
@@ -139,20 +139,20 @@ async function getAllBookmarksFromDb(): Promise<IBookmarks[]>{
   return response;
 }
 
-async function getOneBookmarkFromDb(reqParam: any) {
+async function getOneBookmarkFromDb(reqParam: IBookmarks) {
   const filterQuery = { _id: reqParam };
   const response = dbService.getOneFromDb(Bookmarks, filterQuery);
 
   return response;
 }
 
-async function saveOneBookmarkInDb(requestBody: any) {
+async function saveOneBookmarkInDb(requestBody: IBookmarks) {
   const response = dbService.saveOneInDb(buildBookmarkModelToSave(requestBody));
 
   return response;
 }
 
-async function deleteOneBookmarkInDb(reqParam: any) {
+async function deleteOneBookmarkInDb(reqParam: IBookmarks) {
   const filterQuery = { _id: reqParam };
   const response = dbService.deleteOneFromDb(Bookmarks, filterQuery);
 
@@ -166,20 +166,20 @@ async function getAllUserProfileFromDb(): Promise<IUserProfile[]>{
   return response;
 }
 
-async function getOneUserProfileFromDb(reqParam: any) {
+async function getOneUserProfileFromDb(reqParam: IUserProfile) {
   const filterQuery = { _id: reqParam };
   const response = await dbService.getOneFromDb(UserProfile, filterQuery);
 
   return response;
 }
 
-async function saveOneUserProfileInDb(requestBody: any) {
+async function saveOneUserProfileInDb(requestBody: IUserProfile) {
   const response = dbService.saveOneInDb(buildUserProfileModelToSave(requestBody));
 
   return response;
 }
 
-async function deleteOneUserProfileInDb(reqParam: any) {
+async function deleteOneUserProfileInDb(reqParam: IUserProfile) {
   const filterQuery = { _id: reqParam };
   const response = dbService.deleteOneFromDb(UserProfile, filterQuery);
 
