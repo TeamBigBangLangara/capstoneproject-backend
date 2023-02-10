@@ -26,9 +26,7 @@ export async function updateOneUserById(req: Request, res: Response, next: NextF
 export async function deleteOneUserById(req: Request, res: Response, next: NextFunction) {
   res
     .status(200)
-    .send(
-      await appService.deleteOneUserInDb(req.params.id)
-    );
+    .send( await appService.deleteOneUserInDb(req.params.id));
 }
 
 ////////// RATING //////////
@@ -54,9 +52,7 @@ export async function updateOneRatingById(req: Request, res: Response, next: Nex
 export async function deleteOneRatingById(req: Request, res: Response, next: NextFunction) {
   res
     .status(200)
-    .send(
-      await appService.deleteOneRatingInDb(req.params.id)
-    );
+    .send(await appService.deleteOneRatingInDb(req.params.id));
 }
 
 ////////// BOOKMARK //////////
@@ -75,8 +71,23 @@ export async function saveOneBookmark(req: Request, res: Response, next: NextFun
 
 export async function deleteOneBookmarkById(req: Request, res: Response, next: NextFunction) {
   res
-    .status(200)
-    .send(
-      await appService.deleteOneBookmarkInDb(req.params.id)
-    );
+    .status(200).send(await appService.deleteOneBookmarkInDb(req.params.id));
+}
+
+////////// USER PROFILE //////////
+
+export async function getAllUserProfile(req: Request, res: Response, next: NextFunction) {
+  res.status(200).send(await appService.getAllUserProfileFromDb());
+}
+
+export async function getOneUserProfileById(req: Request, res: Response, next: NextFunction) {
+  res.status(200).send(await appService.getOneUserProfileFromDb(req.params.id));
+}
+
+export async function saveOneUserProfile(req: Request, res: Response, next: NextFunction) {
+  res.status(200).send(await appService.saveOneUserProfileInDb(req.body));
+}
+
+export async function deleteOneUserProfileById(req: Request, res: Response, next: NextFunction) {
+  res.status(200).send(await appService.deleteOneUserProfileInDb(req.params.id));
 }

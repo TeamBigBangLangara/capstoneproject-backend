@@ -3,6 +3,7 @@ const dbService = require("../integration/db.integration");
 import User, { IUser } from "../models/User";
 import Rating, { IRating } from "../models/Rating";
 import Bookmarks, { IBookmarks } from "../models/Bookmarks";
+import UserProfile, { IUserProfile } from "../models/UserProfile";
 
 //=================================== GLOBAL VARIABLES/CONSTANTS
 
@@ -38,6 +39,25 @@ function buildBookmarkModelToSave(informationObject: any) {
   return buildBookmarkModelToSave;
 }
 
+function buildUserProfileModelToSave(informationObject: any) {
+  const buildUserProfileModelToSave = new (UserProfile as any)({
+    address: informationObject.address,
+    profile_photo: informationObject.profile_photo,
+    geoLocation_Latitude: informationObject.geoLocation_Latitude,
+    geoLocation_Longitude: informationObject.geoLocation_Longitude,
+    business_type: informationObject.business_type,
+    notification_setting: informationObject.notification_setting,
+    user_id: informationObject.user_id,
+    // event_customization: {
+    //   radius: informationObject.radius,
+    //   crowd_count: informationObject.crowd_count,
+    //   my_category: informationObject.my_category
+    // }
+  });
+
+  return buildUserProfileModelToSave;
+}
+
 //=================================== API OPERATIONS
 
 ////////// USER //////////
@@ -61,7 +81,7 @@ async function getOneUserFromDb(reqParam: any) {
   }
 
   //this update is not working ----
-  async function updateOneUserInDb(reqParam: string, requestBody: { firstName: string, email: string }): Promise<any> {
+  async function updateOneUserInDb(reqParam: string, requestBody: { firstName: string, email: string }): Promise<IUser[]> {
     const filterQuery = { _id: reqParam };
     const toUpdateUser = await dbService.getOneFromDb(User, filterQuery);
     toUpdateUser.firstName = requestBody.firstName;
@@ -97,7 +117,7 @@ async function saveOneRatingInDb(requestBody: any) {
   return response;
 }
 //this is not working ----
-async function updateOneRatingInDb(reqParam: string, requestBody: { rate: number }): Promise<any> {
+async function updateOneRatingInDb(reqParam: string, requestBody: { rate: number }): Promise<IRating[]> {
   const filterQuery = { _id: reqParam };
   const toUpdateRating = await dbService.getOneFromDb(Rating, filterQuery);
   toUpdateRating.rate = requestBody.rate;
@@ -114,7 +134,7 @@ async function deleteOneRatingInDb(reqParam: any) {
 }
 
 ////////// Bookmarks //////////
-async function getAllBookmarksFromDb() {
+async function getAllBookmarksFromDb(): Promise<IBookmarks[]>{
   const response = dbService.getAllFromDb(Bookmarks);
   return response;
 }
@@ -138,6 +158,33 @@ async function deleteOneBookmarkInDb(reqParam: any) {
 
   return response;
 }
+
+////////// UserProfile //////////
+
+async function getAllUserProfileFromDb(): Promise<IUserProfile[]>{
+  const response = await dbService.getAllFromDb(UserProfile);
+  return response;
+}
+
+async function getOneUserProfileFromDb(reqParam: any) {
+  const filterQuery = { _id: reqParam };
+  const response = await dbService.getOneFromDb(UserProfile, filterQuery);
+
+  return response;
+}
+
+async function saveOneUserProfileInDb(requestBody: any) {
+  const response = dbService.saveOneInDb(buildUserProfileModelToSave(requestBody));
+
+  return response;
+}
+
+async function deleteOneUserProfileInDb(reqParam: any) {
+  const filterQuery = { _id: reqParam };
+  const response = dbService.deleteOneFromDb(UserProfile, filterQuery);
+
+  return response;
+}
   module.exports = {
     getAllUsersFromDb,
     getOneUserFromDb,
@@ -152,5 +199,9 @@ async function deleteOneBookmarkInDb(reqParam: any) {
     getAllBookmarksFromDb,
     getOneBookmarkFromDb,
     saveOneBookmarkInDb,
-    deleteOneBookmarkInDb
+    deleteOneBookmarkInDb,
+    getAllUserProfileFromDb,
+    getOneUserProfileFromDb,
+    saveOneUserProfileInDb,
+    deleteOneUserProfileInDb
   }
