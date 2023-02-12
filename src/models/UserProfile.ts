@@ -9,9 +9,9 @@ interface eventCustomization {
 export interface IUserProfile extends Document {
     address: String;
     geoLocation_Latitude: Number;
-    geoLocation_Longitude: String;
-    profile_photo: String;
-    business_name: String;
+    geoLocation_Longitude?: String;
+    profile_photo?: String;
+    business_name?: String;
     notification_setting: Boolean;
     user_id: String;
     event_customization: eventCustomization;
@@ -52,11 +52,11 @@ const UserProfileSchema = new Schema ({
   },
   business_name: {
     type: String,
-    required: true
+    required: false
   },
   notification_setting: {
     type: Boolean,
-    required: false
+    required: true
   },
   user_id: {
     type: String,

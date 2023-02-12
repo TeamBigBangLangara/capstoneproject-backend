@@ -45,14 +45,13 @@ function buildUserProfileModelToSave(informationObject: IUserProfile) {
     profile_photo: informationObject.profile_photo,
     geoLocation_Latitude: informationObject.geoLocation_Latitude,
     geoLocation_Longitude: informationObject.geoLocation_Longitude,
-    business_type: informationObject.business_name,
+    business_name: informationObject.business_name,
     notification_setting: informationObject.notification_setting,
     user_id: informationObject.user_id,
-    event_customization: {
-      radius: informationObject.event_customization.radius,
-      crowd_count: informationObject.event_customization.crowd_count,
-      my_category: informationObject.event_customization.my_category
-    }
+    event_customization: informationObject.event_customization,
+    radius: informationObject.event_customization.radius,
+    crowd_count: informationObject.event_customization.crowd_count,
+    my_category: informationObject.event_customization.my_category
   });
 
   return buildUserProfileModelToSave;
@@ -80,16 +79,15 @@ async function getOneUserFromDb(reqParam: IUser) {
     return response;
   }
 
-  //this update is not working ----
-  async function updateOneUserInDb(reqParam: string, requestBody: { firstName: string, email: string }): Promise<IUser[]> {
-    const filterQuery = { _id: reqParam };
-    const toUpdateUser = await dbService.getOneFromDb(User, filterQuery);
-    toUpdateUser.firstName = requestBody.firstName;
-    toUpdateUser.email = requestBody.email;
+  // async function updateOneUserInDb(reqParam: string, requestBody: { firstName: string, email: string }): Promise<IUser[]> {
+  //   const filterQuery = { _id: reqParam };
+  //   const toUpdateUser = await dbService.getOneFromDb(User, filterQuery);
+  //   toUpdateUser.firstName = requestBody.firstName;
+  //   toUpdateUser.email = requestBody.email;
   
-    const response = await dbService.saveOneInDb(toUpdateUser);
-    return response;
-  }
+  //   const response = await dbService.saveOneInDb(toUpdateUser);
+  //   return response;
+  // }
 
   async function deleteOneUserInDb(reqParam: IUser) {
     const filterQuery = { _id: reqParam };
@@ -114,15 +112,6 @@ async function getOneRatingFromDb(reqParam: IRating) {
 async function saveOneRatingInDb(requestBody: IRating) {
   const response = dbService.saveOneInDb(buildRatingModelToSave(requestBody));
 
-  return response;
-}
-//this is not working ----
-async function updateOneRatingInDb(reqParam: string, requestBody: { rate: number }): Promise<IRating[]> {
-  const filterQuery = { _id: reqParam };
-  const toUpdateRating = await dbService.getOneFromDb(Rating, filterQuery);
-  toUpdateRating.rate = requestBody.rate;
-
-  const response = await dbService.saveOneInDb(toUpdateRating);
   return response;
 }
 
@@ -189,12 +178,10 @@ async function deleteOneUserProfileInDb(reqParam: IUserProfile) {
     getAllUsersFromDb,
     getOneUserFromDb,
     saveOneUserInDb,
-    updateOneUserInDb,
     deleteOneUserInDb,
     getAllRatingsFromDb,
     getOneRatingFromDb,
     saveOneRatingInDb,
-    updateOneRatingInDb,
     deleteOneRatingInDb,
     getAllBookmarksFromDb,
     getOneBookmarkFromDb,
