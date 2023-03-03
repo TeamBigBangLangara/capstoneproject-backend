@@ -11,7 +11,7 @@ import UserProfile, { IUserProfile } from "../models/UserProfile";
 
 function buildUserModelToSave(informationObject: IUser) {
   const buildUserModelToSave = new User({
-    userName: informationObject.userName,
+    user_name: informationObject.user_name,
     email: informationObject.email,
     UID: informationObject.UID
   });
@@ -78,16 +78,6 @@ async function getOneUserFromDb(reqParam: IUser) {
   
     return response;
   }
-
-  // async function updateOneUserInDb(reqParam: string, requestBody: { firstName: string, email: string }): Promise<IUser[]> {
-  //   const filterQuery = { _id: reqParam };
-  //   const toUpdateUser = await dbService.getOneFromDb(User, filterQuery);
-  //   toUpdateUser.firstName = requestBody.firstName;
-  //   toUpdateUser.email = requestBody.email;
-  
-  //   const response = await dbService.saveOneInDb(toUpdateUser);
-  //   return response;
-  // }
 
   async function deleteOneUserInDb(reqParam: IUser) {
     const filterQuery = { _id: reqParam };
