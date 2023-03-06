@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "target": "es2017",
+    "outDir": "./dist",
+    "baseUrl": "./"
+  },
+  "include": [
+    "*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
