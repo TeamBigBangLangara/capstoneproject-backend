@@ -3,7 +3,7 @@ name: Deploy-To-EC2
 on:
   push:
     branches:
-      - deploy-test
+      - deploy_test
 
 jobs:
   deploy:
