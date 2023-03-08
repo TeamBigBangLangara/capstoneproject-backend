@@ -32,4 +32,4 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
                 cd ${{ secrets.TARGET_DIR }}
-                pm2 restart server/index.ts --name win
+                pm2 restart index.ts --name CE1
