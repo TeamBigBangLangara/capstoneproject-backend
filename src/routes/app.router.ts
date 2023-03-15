@@ -21,6 +21,7 @@ router.delete('/rating/:id', appController.deleteOneRatingById);
 ////////// BOOKMARK ROUTES //////////
 
 router.get('/bookmark/all', appController.getAllBookmarks);
+router.get('/bookmark/user/:user_id', appController.getAllBookmarksByUserId);
 router.get('/bookmark/:id', appController.getOneBookmarkById);
 router.post('/bookmark', appController.saveOneBookmark);
 router.delete('/bookmark/:id', appController.deleteOneBookmarkById);

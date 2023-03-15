@@ -74,6 +74,11 @@ export async function deleteOneBookmarkById(req: Request, res: Response, next: N
     .status(200).send(await appService.deleteOneBookmarkInDb(req.params.id));
 }
 
+export async function getAllBookmarksByUserId(req: Request, res: Response, next: NextFunction) {
+  
+  res.status(200).send(await appService.getAllBookmarksByUserIdFromDb(req.params.user_id));
+}
+
 ////////// USER PROFILE //////////
 
 export async function getAllUserProfile(req: Request, res: Response, next: NextFunction) {
