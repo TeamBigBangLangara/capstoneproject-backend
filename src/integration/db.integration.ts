@@ -65,7 +65,7 @@ async function deleteOneFromDb(collection: { deleteOne: (arg0: any) => any; }, f
   }
 }
 
-async function getAllByQuery(collection: { find: (arg0: any) => any; }, filterQuery: any) {
+async function getAllByQueryFromDb(collection: { find: (arg0: any) => any; }, filterQuery: any) {
   try {
     const query = filterQuery;
     const result = await collection.find(query);
@@ -83,5 +83,5 @@ module.exports = {
   getOneFromDb,
   saveOneInDb,
   deleteOneFromDb,
-  getAllByQuery,
+  getAllByQueryFromDb,
 };

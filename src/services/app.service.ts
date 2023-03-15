@@ -139,9 +139,9 @@ async function deleteOneBookmarkInDb(reqParam: IBookmarks) {
 }
 
 
-async function getAllBookmarksByUserFromDb(reqParam: IBookmarks): Promise<IBookmarks[]>{
+async function getAllBookmarksByUserIdFromDb(reqParam: IBookmarks): Promise<IBookmarks[]>{
   const filterQuery = { user_id: reqParam };
-  const response = dbService.getAllByQuery(Bookmarks,filterQuery);
+  const response = dbService.getAllByQueryFromDb(Bookmarks,filterQuery);
   return response;
 }
 
@@ -183,7 +183,7 @@ async function deleteOneUserProfileInDb(reqParam: IUserProfile) {
     getAllBookmarksFromDb,
     getOneBookmarkFromDb,
     saveOneBookmarkInDb,
-    getAllBookmarksByUserFromDb,
+    getAllBookmarksByUserIdFromDb,
     deleteOneBookmarkInDb,
     getAllUserProfileFromDb,
     getOneUserProfileFromDb,
