@@ -65,9 +65,23 @@ async function deleteOneFromDb(collection: { deleteOne: (arg0: any) => any; }, f
   }
 }
 
+async function getAllByQuery(collection: { find: (arg0: any) => any; }, filterQuery: any) {
+  try {
+    const query = filterQuery;
+    const result = await collection.find(query);
+    return result;
+  } catch (err) {
+    console.error(
+      "Operation: getAllByQuery ",
+      `An error was encountered: ${err}`
+    );
+  }
+}
+
 module.exports = {
   getAllFromDb,
   getOneFromDb,
   saveOneInDb,
   deleteOneFromDb,
+  getAllByQuery,
 };
