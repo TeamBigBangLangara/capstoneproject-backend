@@ -112,6 +112,13 @@ async function deleteOneRatingInDb(reqParam: IRating) {
   return response;
 }
 
+async function getAllRatingsByUserIdFromDb(reqParam: IRating): Promise<IRating[]>{
+  const filterQuery = { user_id: reqParam };
+  const response = dbService.getAllByQueryFromDb(Rating, filterQuery);
+
+  return response;
+}
+
 ////////// Bookmarks //////////
 async function getAllBookmarksFromDb(): Promise<IBookmarks[]>{
   const response = dbService.getAllFromDb(Bookmarks);
@@ -177,6 +184,7 @@ async function deleteOneUserProfileInDb(reqParam: IUserProfile) {
     saveOneUserInDb,
     deleteOneUserInDb,
     getAllRatingsFromDb,
+    getAllRatingsByUserIdFromDb,
     getOneRatingFromDb,
     saveOneRatingInDb,
     deleteOneRatingInDb,
