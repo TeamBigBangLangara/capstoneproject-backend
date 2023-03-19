@@ -55,6 +55,11 @@ export async function deleteOneRatingById(req: Request, res: Response, next: Nex
     .send(await appService.deleteOneRatingInDb(req.params.id));
 }
 
+export async function getAllRatingsByUserId(req: Request, res: Response, next: NextFunction) {
+  
+  res.status(200).send(await appService.getAllRatingsByUserIdFromDb(req.params.user_id));
+}
+
 ////////// BOOKMARK //////////
 
 export async function getAllBookmarks(req: Request, res: Response, next: NextFunction) {

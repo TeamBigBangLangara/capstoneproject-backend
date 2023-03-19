@@ -14,6 +14,7 @@ router.delete('/user/:id', appController.deleteOneUserById);
 ////////// RATING ROUTES //////////
 
 router.get('/rating/all', appController.getAllRatings);
+router.get('/rating/user/:user_id', appController.getAllRatingsByUserId);
 router.get('/rating/:id', appController.getOneRatingById);
 router.post('/rating', appController.saveOneRating);
 router.delete('/rating/:id', appController.deleteOneRatingById);
