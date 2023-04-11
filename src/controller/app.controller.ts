@@ -2,10 +2,12 @@
 const appService = require("../services/app.service");
 import {Request, Response, NextFunction } from "express";
 
+
 //=================================== VARIABLES/CONSTANTS
 
 ////////// USER //////////
 export async function getAllUsers(req: Request, res: Response, next: NextFunction) {
+
   res.status(200).send(await appService.getAllUsersFromDb());
 }
 
