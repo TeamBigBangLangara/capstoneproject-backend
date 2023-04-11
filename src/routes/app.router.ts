@@ -18,7 +18,7 @@ router.get('/rating/all', authenticateJWT, appController.getAllRatings);
 router.get('/rating/user/:user_id', authenticateJWT, appController.getAllRatingsByUserId);
 router.get('/rating/:id', authenticateJWT, appController.getOneRatingById);
 router.post('/rating', authenticateJWT, appController.saveOneRating);
-router.delete('/rating/:id', appController.deleteOneRatingById);
+router.delete('/rating/:id', authenticateJWT, appController.deleteOneRatingById);
 
 ////////// BOOKMARK ROUTES //////////
 
@@ -30,10 +30,10 @@ router.delete('/bookmark/:id', authenticateJWT, appController.deleteOneBookmarkB
 
 ////////// USER PROFILE ROUTES //////////
 
-router.get('/userProfile/all',authenticateJWT, appController.getAllUserProfile);
-router.get('/userProfile/:id',authenticateJWT, appController.getOneUserProfileById);
-router.post('/userProfile',authenticateJWT, appController.saveOneUserProfile);
-router.delete('/userProfile/:id',authenticateJWT, appController.deleteOneUserProfileById);
+router.get('/userProfile/all', authenticateJWT, appController.getAllUserProfile);
+router.get('/userProfile/:id', authenticateJWT, appController.getOneUserProfileById);
+router.post('/userProfile', authenticateJWT, appController.saveOneUserProfile);
+router.delete('/userProfile/:id', authenticateJWT, appController.deleteOneUserProfileById);
 
 export default router;
 
