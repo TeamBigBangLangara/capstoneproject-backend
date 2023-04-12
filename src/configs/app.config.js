@@ -5,6 +5,11 @@ const settings = {
   mongoInstanceUri: process.env.MONGO_URL,
 };
 
+const firebaseSettings = {
+  serviceAccountKey: process.env.FIREBASE_SERVICE_ACCOUNT,
+};
+
 module.exports = {
-  settings
+  settings,
+  firebaseSettings,
 };
