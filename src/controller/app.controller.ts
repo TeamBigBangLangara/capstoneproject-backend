@@ -2,10 +2,12 @@
 const appService = require("../services/app.service");
 import {Request, Response, NextFunction } from "express";
 
+
 //=================================== VARIABLES/CONSTANTS
 
 ////////// USER //////////
 export async function getAllUsers(req: Request, res: Response, next: NextFunction) {
+
   res.status(200).send(await appService.getAllUsersFromDb());
 }
 
@@ -55,6 +57,11 @@ export async function deleteOneRatingById(req: Request, res: Response, next: Nex
     .send(await appService.deleteOneRatingInDb(req.params.id));
 }
 
+export async function getAllRatingsByUserId(req: Request, res: Response, next: NextFunction) {
+  
+  res.status(200).send(await appService.getAllRatingsByUserIdFromDb(req.params.user_id));
+}
+
 ////////// BOOKMARK //////////
 
 export async function getAllBookmarks(req: Request, res: Response, next: NextFunction) {
@@ -72,6 +79,11 @@ export async function saveOneBookmark(req: Request, res: Response, next: NextFun
 export async function deleteOneBookmarkById(req: Request, res: Response, next: NextFunction) {
   res
     .status(200).send(await appService.deleteOneBookmarkInDb(req.params.id));
+}
+
+export async function getAllBookmarksByUserId(req: Request, res: Response, next: NextFunction) {
+  
+  res.status(200).send(await appService.getAllBookmarksByUserIdFromDb(req.params.user_id));
 }
 
 ////////// USER PROFILE //////////
