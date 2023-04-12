@@ -1,6 +1,7 @@
-const { admin } = require("../configs/firebase.config");
+import { admin } from "../configs/firebase.config";
+import {Request, Response, NextFunction } from "express";
 
-const authenticateJWT = async (req, res, next) => {
+const authenticateJWT = async (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers.authorization;
     if (authHeader) {
       const idToken = authHeader.split(" ")[1];
@@ -18,6 +19,6 @@ const authenticateJWT = async (req, res, next) => {
     }
   };
 
-module.exports = {
+export {
     authenticateJWT
 };
